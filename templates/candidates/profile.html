@@ -26,16 +26,16 @@
               <hr class="my-4" />
               <a
                 class="btn btn-warning btn-block"
-                href="{% url 'edit-profile' %}"
+                href="{% url 'candidates:edit-profile' %}"
                 >Edit Profile</a
               ><br />
 
-              <a class="btn btn-primary btn-block" href="{% url 'saved-jobs' %}"
+              <a class="btn btn-primary btn-block" href="{% url 'candidates:saved-jobs' %}"
                 >Saved Jobs</a
               ><br />
               <a
                 class="btn btn-success btn-block"
-                href="{% url 'applied-jobs' %}"
+                href="{% url 'candidates:applied-jobs' %}"
                 >Applied Jobs</a
               >
               {% endif %}
@@ -75,7 +75,7 @@
           {% if skills %}
           <form
             class="form-signin"
-            action="{% url 'skill-delete' %}"
+            action="{% url 'candidates:skill-delete' %}"
             method="POST"
           >
             {% csrf_token %} {% for skill in skills %}

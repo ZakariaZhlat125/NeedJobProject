@@ -13,6 +13,7 @@ urlpatterns = [
     path('privacy-policy/', views.privacy, name='privacy-policy'),
     path('terms-of-service/', views.terms, name='terms-of-service'),
     path('hiring/pricing/', views.pricing, name='pricing'),
+    path('',include('accounts.urls')),
     path('accounts/', include('allauth.urls')),
     path('', include('candidates.urls')),
     path('hiring/', include('recruiters.urls')),

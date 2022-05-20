@@ -1,18 +1,56 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.conf import settings
 from django.urls import reverse_lazy,reverse
 from django.views.generic import CreateView
-from .forms import CustomUserCreationForm
+from .forms import UserRegistrationForm,UserLoginForm
+
 User = settings.AUTH_USER_MODEL
 
-def login(request):
-    return render(request, 'accounts/login.html')
 
-class SignUpView(CreateView):
-    form_class=CustomUserCreationForm
-    success_url=reverse_lazy('login')
-    template_name='signup.html'
+
+def get_success_urls(request):
+    """
+    Handle Success Url After Login
+    """
+    if 'next' in request.GET and request.GET['next'] != '':
+        return request.GET['netx']
+    else:
+        return reverse('candidates:home')
+
+def login(request):
+    form = UserLoginForm(request.POST or None)
+
+    if request.user.is_authenticated:
+        return redirect('/')
+
+    else:
+        if request.method == 'POST':
+            if form.is_valid():
+                auth.login(request, form.get_user())
+                return HttpResponseRedirect(get_success_urls(request))
+    context = {
+        'form': form,
+    }
+    return render(request, 'accounts/login.html',context)
+
+
+def user_registration(request):
+    """
+    Handle user registration
+    """
+    form = UserRegistrationForm(request.POST or None)
+    if form.is_valid():
+        form = form.save()
+        return redirect('accounts:login.html')
+    context = {
+        'form': form,
+    }
+    return render(request, 'accounts/user-registration.html', context)
+
+
 
 
 def get_success_urls(request):

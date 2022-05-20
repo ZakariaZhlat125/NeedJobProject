@@ -1,0 +1,87 @@
+{% extends "accounts/layout.html" %} {% load socialaccount %} {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-md-10 col-lg-7 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h3 class="text-center"><b>Sign Up</b></h3>
+          <br />
+          {% include 'message.html' %}{% if form.errors %} {% for field in form %} {% for error in field.errors %}
+          <div class="alert alert-danger alert-dismissable">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <p>{{ field.label|capfirst }} {{ error|escape }}</p>
+          </div>
+          {% endfor %} {% endfor %} {% for error in form.non_field_errors %}
+          <div class="alert alert-danger alert-dismissable">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <p>{{ error|escape }}</p>
+          </div>
+          {% endfor %} {% endif %}
+           
+          <form method="POST"  action="#" class="form-signin">
+            <div class="form-group">
+            {% csrf_token %}
+            {% for field in form %}
+            {% if field.name == 'gender' %}
+                <div class="row form-group mb-4">
+                    <div class="col-md-12 mb-4 mb-md-0">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="male" value="M">
+                            <label class="form-check-label " for="male ">Male</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="female" value="F">
+                            <label class="form-check-label " for="female ">Female</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="other" value="O">
+                            <label class="form-check-label " for="other ">Other</label>
+                        </div>
+                    </div>
+                </div>
+            {% elif field.name == 'date_of_birth' %}
+                <input id="id_{{field.name}}" class="form-control datepicker" name="{{field.name}}" type="date" />
+
+                                <!-- 2 column grid layout with text inputs for the first and last names -->
+            {% else %}
+                <div class="form-outline mb-4">
+                    <input type="{{ field.field.widget.input_type }}" class="form-control btn-block form-control-lg " name="{{ field.name }}" id="id_{{ field.name }}" placeholder="{{ field.field.widget.attrs.placeholder }}" /> 
+                </div>
+            {% endif %}{% endfor %}
+            <script src="https://www.google.com/recaptcha/api.js "></script>
+            <div class="btn g-recaptcha btn-block " data-sitekey="6Lc6oUkaAAAAANkQnN5HaqEaDix1IvP7vkJSA1Zv "></div>
+            <button class="btn btn-success btn-block " type="submit">Sign Up</button>
+            <br />
+            <h3 class="text-center"><b>OR</b></h3>
+            <br />
+              <a
+                class="btn btn-outline-secondary btn-block"
+                href="{% provider_login_url 'google' %}"
+                ><img
+                  src="https://dl.dropboxusercontent.com/s/es5sylabbcaobjr/google.png?dl=0"
+                  alt="Google"
+                  height="30"
+                  class="d-inline-block mr-2"
+                />Sign In With Google</a
+              >
+              <br />
+              <a
+                class="btn btn-outline-secondary btn-block"
+                href="{% provider_login_url 'github' %}"
+                ><img
+                  src="https://dl.dropboxusercontent.com/s/2929dbjh0nvgbgn/github.png?dl=0"
+                  alt="Github"
+                  height="30"
+                  class="d-inline-block mr-2"
+                />Sign In With Github</a
+              >
+              <br />
+           <div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

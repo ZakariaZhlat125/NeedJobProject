@@ -6,23 +6,32 @@
         <div class="card-body">
           <h3 class="text-center"><b>Sign In</b></h3>
           <br />
-          <form class="form-signin">
+          <form method="POST"  action="#" class="form-signin">
+            {% csrf_token %}
+            {% for field in form %}
+                    <div class="form-outline mb-4">
+                        <input type="{{ field.field.widget.input_type }}" class="form-control form-control-lg" name="{{ field.name }}" id="id_{{ field.name }}" placeholder="{{ field.field.widget.attrs.placeholder }}" />
+                    </div>
+            {% endfor %}
+        <button class="btn btn-success btn-block" type="submit">Sign In</button>
+        <br/>
+        <h3 class="text-center"><b> OR </b> </h3>
+        <be />
             <div class="form-group">
               <a
-                class="btn btn-outline-secondary btn-block"
-                href="{% provider_login_url 'google' %}"
-                ><img
+                class="btn btn-outline-secondary btn-block"href="{% provider_login_url 'google' %}">
+                <img
                   src="https://dl.dropboxusercontent.com/s/es5sylabbcaobjr/google.png?dl=0"
                   alt="Google"
                   height="30"
                   class="d-inline-block mr-2"
                 />Sign In With Google</a
               >
-              <br />
+              
               <a
                 class="btn btn-outline-secondary btn-block"
-                href="{% provider_login_url 'github' %}"
-                ><img
+                href="{% provider_login_url 'github' %}">
+                <img
                   src="https://dl.dropboxusercontent.com/s/2929dbjh0nvgbgn/github.png?dl=0"
                   alt="Github"
                   height="30"
@@ -30,18 +39,11 @@
                 />Sign In With Github</a
               >
               <br />
-              <a
-                class="btn btn-outline-dark btn-block"
-                href="{% provider_login_url 'linkedin_oauth2' %}"
-                ><img
-                  src="https://dl.dropboxusercontent.com/s/yz30dq16gqmjbv1/linkedin.png?dl=0"
-                  alt="Linkedin"
-                  height="30"
-                  class="d-inline-block mr-2"
-                />Sign In With LinkedIn</a
-              >
-            </div>
+           <div>
           </form>
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="{% url 'accounts:user-register' %}" class="link-danger">Register</a></p>
+        </div>
         </div>
       </div>
     </div>

@@ -172,7 +172,7 @@ def my_profile(request):
             data = form.save(commit=False)
             data.user = you
             data.save()
-            return redirect('my-profile')
+            return redirect('candidates:my-profile')
     else:
         form = NewSkillForm()
     context = {
@@ -228,7 +228,7 @@ def delete_skill(request, pk=None):
         id_list = request.POST.getlist('choices')
         for skill_id in id_list:
             Skill.objects.get(id=skill_id).delete()
-        return redirect('my-profile')
+        return redirect('candidates:my-profile')
 
 
 @login_required
