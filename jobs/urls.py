@@ -14,9 +14,9 @@ urlpatterns = [
     path('terms-of-service/', views.terms, name='terms-of-service'),
     path('hiring/pricing/', views.pricing, name='pricing'),
     path('accounts/', include('allauth.urls')),
-    #path('', include('candidates.urls')),
-    #path('hiring/', include('recruiters.urls')),
-    re_path('', include('pwa.urls')),
+    path('', include('candidates.urls')),
+    path('hiring/', include('recruiters.urls')),
+    #re_path('', include('pwa.urls')),
 ]
 
 if settings.DEBUG:

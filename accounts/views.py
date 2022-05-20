@@ -1,9 +1,28 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-
+from django.conf import settings
+from django.urls import reverse_lazy,reverse
+from django.views.generic import CreateView
+from .forms import CustomUserCreationForm
+User = settings.AUTH_USER_MODEL
 
 def login(request):
     return render(request, 'accounts/login.html')
+
+class SignUpView(CreateView):
+    form_class=CustomUserCreationForm
+    success_url=reverse_lazy('login')
+    template_name='signup.html'
+
+
+def get_success_urls(request):
+    """
+    Handle Success Url After Login
+    """
+    if 'next' in request.GET and request.GET['next'] != '':
+        return request.GET['netx']
+    else:
+        return reverse('candidates:home')
 
 
 @login_required
