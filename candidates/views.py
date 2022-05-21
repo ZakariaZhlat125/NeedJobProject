@@ -197,7 +197,7 @@ def edit_profile(request):
             data = form.save(commit=False)
             data.user = you
             data.save()
-            return redirect('my-profile')
+            return redirect('candidates:my-profile')
     else:
         form = ProfileUpdateForm(instance=profile)
     context = {
