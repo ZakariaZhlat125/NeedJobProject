@@ -21,6 +21,7 @@ def home(request):
     return render(request, 'candidates/home.html', context)
 
 
+@login_required
 def job_search_list(request):
     query = request.GET.get('p')
     loc = request.GET.get('q')
@@ -66,6 +67,7 @@ def job_search_list(request):
     return render(request, 'candidates/job_search_list.html', context)
 
 
+@login_required
 def job_detail(request, slug):
     job = get_object_or_404(Job, slug=slug)
     apply_button = 0

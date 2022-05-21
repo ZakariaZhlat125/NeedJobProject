@@ -12,7 +12,9 @@ GENDER_CHOICES = (
     ('O', "Other"),
 )
 class User(AbstractUser):
-    username=None
+    #first_name = models.CharField(max_length=30, blank=True)
+    #last_name = models.CharField(max_length=30, blank=True)
+    username = None 
     email=models.EmailField(
         verbose_name='email address',
         max_length=255,
