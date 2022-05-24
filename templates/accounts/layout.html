@@ -3,17 +3,9 @@
 <html>
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    {% progressive_web_app_meta %}
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      href={% static 'img/favicon1.jpg' %}
-    />
+   
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.jpg'%}">
+
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -55,18 +47,21 @@
   </head>
 
   <body>
+
+    <!--nav if user is login-->
+    {% if user.is_authenticated %}
+    <!-- nav if user is a Employers -->
     {% if not rec_navbar %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <a class="navbar-brand" href="{% url 'candidates:detail-candidates' %}">
         <img
-          href={% static 'img/favicon1.jpg' %}
-          width="50"
-          height="50"
+          href={% static 'img/favicon.jpg' %}
+          width=30
+          height=30
           class="d-inline-block align-top mr-3"
           alt=""
         /><b>NeedJob</b>
       </a>
- 
       <button
         class="navbar-toggler"
         type="button"
@@ -97,36 +92,26 @@
             class="nav-item nav-link {{ account_page }}"
             href="{% url 'account' %}"
             >My Account</a
-          >
-          {% if user.is_authenticated %}
+          > 
           <a
             class="nav-item nav-link btn btn-danger ml-4 mr-4 text-light"
             href="{% url 'logout' %}"
             >Logout</a
           >
-          <a class="nav-item nav-link" href="{% url 'add-job' %}"
-            >Recruiters/ Employers</a
+          <a class="nav-item nav-link text-success" href="{% url 'add-job' %}"
+            >Employers</a
           >
-          {% else %}
-          <a
-            class="nav-item nav-link btn btn-success ml-4 mr-4 text-light"
-            href="{% url 'login' %}"
-            >Login</a
-          >
-          <a class="nav-item nav-link" href="{% url 'detail-recruiters' %}"
-            >Recruiters/ Employers</a
-          >
-          {% endif %}
         </div>
       </div>
     </nav>
     {% else %}
+    <!-- nav if user is a Job Seekers -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <a class="navbar-brand" href="{% url 'detail-recruiters' %}">
         <img
-          src="https://dl.dropboxusercontent.com/s/vqp7i2tv6uvc1gs/logofenice.jfif?dl=0"
-          width="30"
-          height="30"
+          href={% static 'img/favicon.jpg' %}
+          width=30
+          height=30
           class="d-inline-block align-top mr-3"
           alt=""
         /><b>NeedJob</b>
@@ -164,27 +149,61 @@
             href="{% url 'search-candidates' %}"
             >Seach Candidates</a
           >
-          {% if user.is_authenticated %}
           <a
             class="nav-item nav-link btn btn-danger ml-4 mr-4 text-light"
             href="{% url 'logout' %}"
             >Logout</a
           >
-          {% else %}
-
-          <a
-            class="nav-item nav-link btn btn-success ml-4 mr-4 text-light"
-            href="{% url 'login' %}"
-            >Login</a
-          >
-          {% endif %}
-          <a class="nav-item nav-link" href="{% url 'candidates:home' %}"
-            >Job Seekers/Candidates</a
+          <a class="nav-item nav-link text-success" href="{% url 'candidates:home' %}"
+            >Job Seekers</a
           >
         </div>
       </div>
     </nav>
     {% endif %}
+
+    <!-- nav if user is't login -->
+    {% else %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <a class="navbar-brand" href="{% url 'candidates:detail-candidates' %}">
+        <img
+          href={% static 'img/favicon.jpg' %}
+          width=30
+          height=30
+          class="d-inline-block align-top mr-3"
+          alt=""
+        /><b>NeedJob</b>
+      </a>
+ 
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link {{ home_page }}" href="{% url 'candidates:home' %}"
+            >Job Search</a>
+          <a
+            class="nav-item nav-link btn btn-success ml-4 mr-4 text-light"
+            href="{% url 'login' %}"
+            >Login</a>
+        </div>
+      </div>
+    </nav>
+    {% endif %}
+
+
+
+
+
+
     <div class="container">{% block content %}{% endblock content %}</div>
 
     <footer>
@@ -203,7 +222,7 @@
             ><a href="{% url 'privacy-policy' %}">Privacy Policy</a>
           </p>
           <p class="company-name">
-            NeedJob @ 2020<br /><small class="text-muted"
+            NeedJob @ 2022<br /><small class="text-muted"
               >All rights reserved!</small
             ><br />
           </p>

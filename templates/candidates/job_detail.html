@@ -17,7 +17,7 @@
           {% else %} {% if not apply_button %} {% if profile.resume %}
           <a
             class="btn btn-warning btn-lg"
-            href="{% url 'apply-job' job.slug %}"
+            href="{% url 'candidates:apply-job' job.slug %}"
             ><b>Apply Now</b></a
           >
           {%else %}

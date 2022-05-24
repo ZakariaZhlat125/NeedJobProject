@@ -87,7 +87,32 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'jobs.wsgi.application'
 
+#authentication 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
 
+#log in using google && github
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    },
+    
+    'github': {
+        'SCOPE': [
+            'user',
+            'repo',
+            'read:org',
+        ],
+    }
+}
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -98,6 +123,7 @@ DATABASES = {
     }
 }
 
+#show defult sttings loacalhost/admin
 SITE_ID = 1
 
 # Password validation
@@ -130,12 +156,23 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOGIN_REDIRECT_URL = '/'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+SOCIALACCOUNT_QUERY_EMAIL = True
+ACCOUNT_LOGOUT_ON_GET= True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_REQUIRED = True
 
+
+
+STATIC_URL = 'static/'
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,"static"),
+]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")

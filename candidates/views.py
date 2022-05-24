@@ -21,7 +21,7 @@ def home(request):
     return render(request, 'candidates/home.html', context)
 
 
-@login_required
+#@login_required
 def job_search_list(request):
     query = request.GET.get('p')
     loc = request.GET.get('q')
