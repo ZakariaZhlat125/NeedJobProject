@@ -47,11 +47,6 @@
   </head>
 
   <body>
-
-    <!--nav if user is login-->
-    {% if user.is_authenticated %}
-    <!-- nav if user is a Employers -->
-    {% if not rec_navbar %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <a class="navbar-brand" href="{% url 'candidates:detail-candidates' %}">
         <img
@@ -62,121 +57,6 @@
           alt=""
         /><b>NeedJob</b>
       </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav  ">
-          <a class="nav-item nav-link {{ home_page }}" href="{% url 'candidates:home' %}"
-            >Job Search</a
-          >
-          <a
-            class="nav-item nav-link {{ profile_page }}"
-            href="{% url 'candidates:my-profile' %}"
-            >My Profile</a
-          >
-          <a
-            class="nav-item nav-link {{ intel_page }}"
-            href="{% url 'candidates:intelligent-search' %}"
-            >Get Relevant Jobs</a
-          >
-          <a
-            class="nav-item nav-link {{ account_page }}"
-            href="{% url 'account' %}"
-            >My Account</a
-          > 
-
-          <a
-            class="nav-item nav-link btn btn-danger ml-4 mr-4 text-light"
-            href="{% url 'logout' %}"
-            >Logout</a
-          >
-          <a class="nav-item nav-link text-success" href="{% url 'add-job' %}"
-            >Employers</a
-          >
-        </div>
-      </div>
-    </nav>
-    {% else %}
-    <!-- nav if user is a Job Seekers -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-      <a class="navbar-brand" href="{% url 'detail-recruiters' %}">
-        <img
-          href={% static 'img/favicon.jpg' %}
-          width=30
-          height=30
-          class="d-inline-block align-top mr-3"
-          alt=""
-        /><b>NeedJob</b>
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a
-            class="nav-item nav-link {{ rec_home_page }}"
-            href="{% url 'detail-recruiters' %}"
-            >Home</a
-          >
-          <a
-            class="nav-item nav-link {{ add_job_page }}"
-            href="{% url 'add-job' %}"
-            >Add Job Post</a
-          >
-          <a
-            class="nav-item nav-link {{ manage_jobs_page }}"
-            href="{% url 'job-list' %}"
-            >Manage Your Job Posts</a
-          >
-          <a
-            class="nav-item nav-link {{ search_candidates_page }}"
-            href="{% url 'search-candidates' %}"
-            >Seach Candidates</a
-          >
-        
-          <a
-            class="nav-item nav-link btn btn-danger ml-4 mr-4 text-light"
-            href="{% url 'logout' %}"
-            >Logout</a
-          >
-          <a class="nav-item nav-link text-success" href="{% url 'candidates:home' %}"
-            >Job Seekers</a
-          >
-        </div>
-      </div>
-    </nav>
-    {% endif %}
-
-    <!-- nav if user is't login -->
-    {% else %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-      <a class="navbar-brand" href="{% url 'candidates:detail-candidates' %}">
-        <img
-          href={% static 'img/favicon.jpg' %}
-          width=30
-          height=30
-          class="d-inline-block align-top mr-3"
-          alt=""
-        /><b>NeedJob</b>
-      </a>
- 
       <button
         class="navbar-toggler"
         type="button"
@@ -194,24 +74,9 @@
             >Job Search</a>
           
         </div>
-      </div>
-      <div>
-        <div>
-          <a class="nav-item nav-link btn btn-success  ml-5 mr-4 text-light "
-            href="{% url 'login' %}"
-            >Login</a>
-        </div>
-      </div>
+      </div>     
     </nav>
-    {% endif %}
-
-
-
-
-
-
     <div class="container">{% block content %}{% endblock content %}</div>
-
     <footer>
       <hr my-2 />
       <div class="row">
