@@ -21,6 +21,7 @@ class Job(models.Model):
     company = models.CharField(max_length=200)
     location = models.CharField(max_length=255)
     description = models.TextField()
+    requirements = models.TextField()
     skills_req = models.CharField(max_length=200)
     job_type = models.CharField(
         max_length=30, choices=CHOICES, default='Full Time', null=True)

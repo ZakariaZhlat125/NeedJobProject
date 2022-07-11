@@ -41,12 +41,16 @@
                     </div>
                 </div>
             {% elif field.name == 'date_of_birth' %}
+            <div>
                 <input id="id_{{field.name}}" class="form-control datepicker" name="{{field.name}}" type="date" />
+            </div>
 
                                 <!-- 2 column grid layout with text inputs for the first and last names -->
+            
+            
             {% else %}
                 <div class="form-outline mb-4">
-                    <input type="{{ field.field.widget.input_type }}" class="form-control btn-block form-control-lg " name="{{ field.name }}" id="id_{{ field.name }}" placeholder="{{ field.field.widget.attrs.placeholder }}" /> 
+                    <input type="{{ field.field.widget.input_type }}" class="form-control btn-block form-control-lg " name="{{ field.name }}" id="id_{{ field.name }} " placeholder="{{ field.field.widget.attrs.placeholder }}" /> 
                 </div>
             {% endif %}{% endfor %}
             <script src="https://www.google.com/recaptcha/api.js "></script>
@@ -83,5 +87,6 @@
       </div>
     </div>
   </div>
+   
 </div>
 {% endblock %}

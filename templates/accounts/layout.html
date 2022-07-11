@@ -198,7 +198,7 @@
       <div>
         <div>
           <a class="nav-item nav-link btn btn-success  ml-5 mr-4 text-light "
-            href="{% url 'login' %}"
+            href="{% url 'accounts:login' %}"
             >Login</a>
         </div>
       </div>
@@ -265,6 +265,7 @@
     </footer>
 
     <!-- JS Files -->
+    <script href='{% static 'js/showpassword.js' %}'></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

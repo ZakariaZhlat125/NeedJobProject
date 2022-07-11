@@ -16,7 +16,7 @@ def get_success_urls(request):
     Handle Success Url After Login
     """
     if 'next' in request.GET and request.GET['next'] != '':
-        return request.GET['netx']
+        return request.GET['next']
     else:
         return reverse('candidates:home')
 
@@ -44,23 +44,13 @@ def user_registration(request):
     form = UserRegistrationForm(request.POST or None)
     if form.is_valid():
         form = form.save()
-        return redirect('accounts:login.html')
+        return redirect('accounts:login')
     context = {
         'form': form,
     }
     return render(request, 'accounts/user-registration.html', context)
 
 
-
-
-def get_success_urls(request):
-    """
-    Handle Success Url After Login
-    """
-    if 'next' in request.GET and request.GET['next'] != '':
-        return request.GET['netx']
-    else:
-        return reverse('candidates:home')
 
 
 @login_required

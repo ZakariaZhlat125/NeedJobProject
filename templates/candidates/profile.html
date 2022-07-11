@@ -9,7 +9,7 @@
           <br />
           <form class="form-signin">
             <div class="form-group">
-              <p>Name: {{ profile.full_name }}</p>
+              <p>Name: {{request.user.get_full_name}}</p>
               <p>Email: {{ u.email }}</p>
               <p>Country: {{ profile.country.name }}</p>
               <p>Location: {{ profile.location }}</p>

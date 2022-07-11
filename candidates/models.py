@@ -20,6 +20,9 @@ class Profile(models.Model):
     full_name = models.CharField(max_length=200, null=True, blank=True)
     country = CountryField(null=True, blank=True)
     location = models.CharField(max_length=255, null=True, blank=True)
+    picture = models.ImageField(
+        upload_to='img/users', null=True, verbose_name=""
+    )
     resume = models.FileField(upload_to='resumes', null=True, blank=True)
     grad_year = models.IntegerField(blank=True)
     looking_for = models.CharField(
@@ -34,7 +37,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
-
 
 class Skill(models.Model):
     skill = models.CharField(max_length=200)
