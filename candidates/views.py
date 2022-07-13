@@ -158,7 +158,7 @@ def intelligent_search(request):
     context = {
         'intel_page': "active",
         'jobs': objects,
-        'counter': len(relevant_jobs),
+        'counter': len(relevant_jobs),      
     }
     return render(request, 'candidates/intelligent_search.html', context)
 
