@@ -48,7 +48,7 @@
             {% if user.is_authenticated %}
             <a href="{% url 'candidates:job-detail' job.slug %}">Read More</a>
             {% else %}
-            <a href="{% url 'login' %}"> Read More </a>
+            <a href="{% url 'accounts:login' %}"> Read More </a>
             {% endif %}
           </p>
         </span>
