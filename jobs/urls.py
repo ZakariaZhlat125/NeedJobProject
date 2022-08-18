@@ -20,7 +20,7 @@ urlpatterns = [
     path('hiring/', include('recruiters.urls')),
     #path('', include('pwa.urls')),
 ]
-
+handler404="jobs.views.page_not_found_view"
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
