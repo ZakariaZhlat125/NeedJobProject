@@ -9,7 +9,7 @@ An open source online job portal using django==4.0.4
    https://www.python.org/ftp/python/3.10.2/python-3.10.2-amd64.exe
 )
 
-open thww terminal and run this :
+open the terminal and run this :
 
 Create virtual envvironment 
 ```
