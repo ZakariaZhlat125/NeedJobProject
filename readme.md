@@ -1,6 +1,8 @@
 # NeedJobproject 
+## django job protal
+An open source online job portal using django==4.0.4
 
-## Installation
+## Setup
 
 
 [Download python-3.10.2](
